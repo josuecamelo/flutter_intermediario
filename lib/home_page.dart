@@ -1,4 +1,6 @@
 import 'package:aula01/pages/hello_page1.dart';
+import 'package:aula01/pages/hello_page2.dart';
+import 'package:aula01/pages/hello_page3.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -12,7 +14,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  _body(BuildContext context) {
+  _body(context) {
     return Container(
       color: Colors.white,
       child: Column(
@@ -20,7 +22,7 @@ class HomePage extends StatelessWidget {
         children: <Widget>[
           _text(),
           _pageView(),
-          _buttons(context),
+          _buttons(context)
         ],
       ),
     );
@@ -28,71 +30,70 @@ class HomePage extends StatelessWidget {
 
   Container _pageView() {
     return Container(
-      margin: EdgeInsets.only(top: 20, bottom: 20),
+      margin: EdgeInsets.only(top:20, bottom: 20),
       height: 300,
       child: PageView(
         children: <Widget>[
-          _img(
-            "assets/images/dog1.png",
-          ),
-          _img(
-            "assets/images/dog2.png",
-          ),
-          _img(
-            "assets/images/dog3.png",
-          ),
-          _img(
-            "assets/images/dog4.png",
-          ),
-          _img(
-            "assets/images/dog5.png",
-          ),
+          _img("assets/images/dog1.png"),
+          _img("assets/images/dog2.png"),
+          _img("assets/images/dog3.png"),
+          _img("assets/images/dog4.png"),
+          _img("assets/images/dog5.png")
         ],
       ),
     );
   }
 
-  _buttons(BuildContext context) {
+  _buttons(context) {
     return Column(
       children: <Widget>[
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            _button(context, "List View"),
-            _button(context, "Page 2"),
-            _button(context, "Page 3"),
+            _button(context,"ListView", () => _onClickNavigator(context, HelloPage1())),
+            _button(context,"Page 2", () => _onClickNavigator(context, HelloPage2())),
+            _button(context,"Page 3", () => _onClickNavigator(context, HelloPage3())),
           ],
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            _button(context, "Snack"),
-            _button(context, "Dialog"),
-            _button(context, "Toast"),
+            _button(context,"Snack", _onClickSnack),
+            _button(context,"Dialog", _onClickDialog),
+            _button(context,"Toast", _onClickToast)
           ],
-        ),
+        )
       ],
     );
   }
 
-  _button(BuildContext context, String text) {
-    return RaisedButton(
-      color: Colors.blue,
-      child: Text(
-        text,
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 20,
-        ),
-      ),
-      onPressed: () => _onClickOk(context),
-    );
+  void _onClickNavigator(BuildContext context, Widget page) {
+    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+      return page;
+    }));
   }
 
-  void _onClickOk(context) {
-    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
-      return HelloPage1();
-    }));
+  _onClickSnack() {
+  }
+
+  _onClickDialog() {
+  }
+
+  _onClickToast() {
+  }
+
+  _button(BuildContext context,String text, Function onPressed) {
+    return RaisedButton(
+        color: Colors.blue,
+        child: Text(
+          text,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+          ),
+        ),
+        onPressed: onPressed
+    );
   }
 
   _img(String img) {
@@ -100,7 +101,6 @@ class HomePage extends StatelessWidget {
       img,
       fit: BoxFit.cover,
     );
-    //return Image.network('https://tudosobrecachorros.com.br/wp-content/uploads/fotos-de-cachorros-01.jpg');
   }
 
   _text() {
