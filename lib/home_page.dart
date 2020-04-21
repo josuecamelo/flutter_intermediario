@@ -68,11 +68,15 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  void _onClickNavigator(BuildContext context, Widget page) async {
-    //recebendo retorno do pop da pagina 2 e pagina 3
-    String str = await Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+  Future push(BuildContext context, Widget page) {
+    return  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
       return page;
     }));
+  }
+
+  void _onClickNavigator(BuildContext context, Widget page) async {
+    //recebendo retorno do pop da pagina 2 e pagina 3
+    String str = await push(context, page);
 
     print(">> $str ");
   }
