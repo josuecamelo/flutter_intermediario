@@ -1,3 +1,4 @@
+import 'package:aula01/utils/nav.dart';
 import 'package:aula01/widgets/blueButton.dart';
 import 'package:flutter/material.dart';
 
@@ -22,6 +23,6 @@ class HelloPage2 extends StatelessWidget {
   }
 
   void _onClickVoltar(BuildContext context) {
-    Navigator.pop(context, "Tela 2");
+    pop(context, "Tela 2");
   }
 }

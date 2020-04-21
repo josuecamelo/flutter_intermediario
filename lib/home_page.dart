@@ -1,6 +1,7 @@
 import 'package:aula01/pages/hello_page1.dart';
 import 'package:aula01/pages/hello_page2.dart';
 import 'package:aula01/pages/hello_page3.dart';
+import 'package:aula01/utils/nav.dart';
 import 'package:aula01/widgets/blueButton.dart';
 import 'package:flutter/material.dart';
 
@@ -66,12 +67,6 @@ class HomePage extends StatelessWidget {
         )
       ],
     );
-  }
-
-  Future push(BuildContext context, Widget page) {
-    return  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-      return page;
-    }));
   }
 
   void _onClickNavigator(BuildContext context, Widget page) async {
